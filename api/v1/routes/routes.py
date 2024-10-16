@@ -9,3 +9,6 @@ router.post("/login")(AuthController.login)
 
 # /api/v1/register -> POST
 router.post("/register")(AuthController.register)
+
+# /api/v1/users/me -> GET
+router.get("/users/me")(AuthController.read_users_me)
