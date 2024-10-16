@@ -1,7 +1,16 @@
 from fastapi import FastAPI
 
+from api.core.config import engine
+from api.models.models import Base
+
 # Create an instance of the FastAPI class
 app = FastAPI()
+
+
+# Create tables
+@app.on_event("startup")
+def on_startup() -> None:
+    Base.metadata.create_all(bind=engine)
 
 # Define a route for the root URL ("/")
 @app.get("/")
