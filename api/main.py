@@ -2,10 +2,12 @@ from fastapi import FastAPI
 
 from api.core.config import engine
 from api.models.models import Base
+from api.v1.routes import routes
 
 # Create an instance of the FastAPI class
 app = FastAPI()
 
+app.include_router(routes.router, prefix="/api/v1")
 
 # Create tables
 @app.on_event("startup")
