@@ -12,11 +12,11 @@ class RegisterRequest(BaseModel):
     password: str
 
 
-async def login(request: Request, credentials: LoginRequest) -> JSONResponse:
+async def login(request: Request, credentials: LoginRequest) -> JSONResponse:  # noqa: ARG001
     content = {"message": "login", "username": credentials.username, "password": credentials.password}
     return JSONResponse(content=content)
 
 
-async def register(request: Request, new_user: RegisterRequest) -> JSONResponse:
+async def register(request: Request, new_user: RegisterRequest) -> JSONResponse:  # noqa: ARG001
     content = {"message": "register", "username": new_user.username, "password": new_user.password}
     return JSONResponse(content=content)
