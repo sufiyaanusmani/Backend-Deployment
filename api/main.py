@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from api.core.config import engine
 from api.models.models import Base
@@ -6,6 +7,20 @@ from api.v1.routes import routes
 
 # Create an instance of the FastAPI class
 app = FastAPI()
+
+# Allow origins for CORS
+origins = [
+    "http://localhost:3000",  # Next.js frontend
+    # You can add more origins if needed
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,  # Allow specific origins
+    allow_credentials=True,  # Allow cookies and credentials
+    allow_methods=["*"],  # Allow all HTTP methods (GET, POST, etc.)
+    allow_headers=["*"],  # Allow all headers
+)
 
 app.include_router(routes.router, prefix="/api/v1")
 
